@@ -26,8 +26,8 @@ module "eks" {
   control_plane_subnet_ids = local.private_subnet_ids
   create_node_security_group = false
   create_security_group      = false
-  node_security_group_id = local.eks_node_sg_id
-  security_group_id = local.eks_control_plane_sg_id
+  node_security_group_id = local.node_sg_id
+  security_group_id = local.cluster_sg_id
 
   # EKS Managed Node Group(s)
   eks_managed_node_groups = {
@@ -58,35 +58,36 @@ module "eks" {
         nodegroup = "blue"
       }
     }
-
-    green = {
-      create = var.enable_green
-      ami_type       = "AL2023_x86_64_STANDARD"
-      kubernetes_version = var.eks_nodegroup_green_version
-      instance_types = ["m5.xlarge"]
-      iam_role_additional_policies  = {
-        amazonEFS = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
-        amazonEBS = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-      }
-      
-      # cluster nodes autoscaling
-      min_size     = 2
-      max_size     = 10
-      desired_size = 2
-
-      # taints = {
-      #   upgrade = {
-      #     key = "upgrade"
-      #     value = "true"
-      #     effect = "NO_SCHEDULE"
-      #   }
-      # }
-
-      labels = {
-        nodegroup = "green"
-      }
-    }
   }
+
+    # green = {
+    #   create = var.enable_green
+    #   ami_type       = "AL2023_x86_64_STANDARD"
+    #   kubernetes_version = var.eks_nodegroup_green_version
+    #   instance_types = ["m5.xlarge"]
+    #   iam_role_additional_policies  = {
+    #     amazonEFS = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
+    #     amazonEBS = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+    #   }
+      
+    #   # cluster nodes autoscaling
+    #   min_size     = 2
+    #   max_size     = 10
+    #   desired_size = 2
+
+    #   taints = {
+    #     upgrade = {
+    #       key = "upgrade"
+    #       value = "true"
+    #       effect = "NO_SCHEDULE"
+    #     }
+    #   }
+
+  #     labels = {
+  #       nodegroup = "green"
+  #     }
+  #   }
+  #  }
 
   tags = merge(
     local.common_tags,

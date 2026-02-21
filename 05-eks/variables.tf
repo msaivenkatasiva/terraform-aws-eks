@@ -7,11 +7,11 @@ variable "environment" {
 }
 
 variable "zone_id" {
-    default = "Z0948150OFPSYTNVYZOY"
+    default = "Z075478039VTC5J0BH2AB"
 }
 
 variable "domain_name" {
-    default = ""
+    default = "devops76.sbs"
 }
 
 variable "eks_version" {

@@ -47,7 +47,7 @@ module "db" {
   allocated_storage = 5
 
   db_name  = "transactions"
-  username = "root"
+  username = "expense"
   password = "ExpenseApp1"
   port     = 3306
 

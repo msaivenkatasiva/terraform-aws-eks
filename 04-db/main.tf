@@ -46,6 +46,7 @@ module "db" {
   instance_class    = "db.t3.micro"
   allocated_storage = 5
 
+  manage_master_user_password = false
   db_name  = "transactions"
   username = "expense"
   password = "ExpenseApp1"

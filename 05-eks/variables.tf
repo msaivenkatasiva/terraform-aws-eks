@@ -7,11 +7,11 @@ variable "environment" {
 }
 
 variable "zone_id" {
-    default = "Z075478039VTC5J0BH2AB"
+    default = "Z05211982ADHIMYTW3LFQ"
 }
 
 variable "domain_name" {
-    default = "devops76.sbs"
+    default = "sivacloudlabs.online"
 }
 
 variable "eks_version" {

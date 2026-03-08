@@ -16,5 +16,5 @@ variable "common_tags" {
 }
 
 variable "zone_name" {
-  default = "devops76.sbs"
+  default = "sivacloudlabs.online "
 }
